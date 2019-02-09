@@ -48,6 +48,19 @@ class LinkedList:
 		currY.next = currX.next
 		currX.next = temp
 
+	def reverseList(self):
+		prev = None
+		curr = self.head
+		nex = None
+		if curr == None or curr.next == None:
+			return
+		while curr != None:
+			nex = curr.next
+			curr.next = prev
+			prev = curr
+			curr = nex
+
+		self.head = prev
 
 	def deleteNodePosition(self,position):
 		temp = self.head
@@ -129,10 +142,11 @@ if __name__ == '__main__':
 	llist.push(2)
 	print("Created Linked List: ")
 	llist.printList()
-	print("Length :")
+	#print("Length :")
 	#print(llist.getCount())
 	#llist.deleteNodePosition(0)
-	llist.swapNode(3,10)
+	#llist.swapNode(3,10)
+	llist.reverseList()
 	
 	print("\nLinked List after Swap of 1: ")
 	llist.printList()
