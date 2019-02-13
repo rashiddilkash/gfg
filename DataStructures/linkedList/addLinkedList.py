@@ -48,6 +48,57 @@ class LinkedList:
 		currY.next = currX.next
 		currX.next = temp
 
+	def reverseList(self):
+		prev = None
+		curr = self.head
+		nex = None
+		if curr == None or curr.next == None:
+			return
+		while curr != None:
+			nex = curr.next
+			curr.next = prev
+			prev = curr
+			curr = nex
+
+		self.head = prev
+
+	def addTwoLists(self,first,second):
+		res = LinkedList()
+		if first == None or first.next == None:
+			return second
+		if second == None or second.next == None:
+			return first
+		temp = (first.data + second.data)%10
+		carry = int((first.data + second.data)/10)
+		result.push(temp)
+		first = first.next
+		second = second.next
+		while first !=None or second != None:
+			if first == None:
+				t1 = 0
+			else :
+				t1 = first.data
+
+			if second == None:
+				t2 = 0
+			else :
+				t2 = second.data
+			temp = (t1+t2+carry)%10
+			result.push(temp)
+			carry = int((t1+t2+carry)/10)
+			if first!=None and second!=None:
+				first = first.next
+				second = second.next
+			elif (first != None and second == None):
+				first = first.next
+			elif (first == None and second != None):
+				second = second.next
+		if carry != 0:
+			result.push(carry)
+		result.reverseList()
+		return result
+
+			
 
 	def deleteNodePosition(self,position):
 		temp = self.head
@@ -122,17 +173,35 @@ class LinkedList:
 
 if __name__ == '__main__':
 
-	llist = LinkedList()
-	llist.push(7)
-	llist.push(1)
-	llist.push(3)
-	llist.push(2)
-	print("Created Linked List: ")
-	llist.printList()
-	print("Length :")
+	llist1 = LinkedList()
+	llist1.push(6)
+	llist1.push(4)
+	llist1.push(9)
+	llist1.push(5)
+	llist1.push(7)
+
+	print("Linked List 1 : ")
+	llist1.printList()
+	#llist1.reverseList()
+
+	llist2 = LinkedList()
+	llist2.push(4)
+	llist2.push(8)
+
+	print("Linked List 2 : ")
+	llist2.printList()
+	#llist2.reverseList()
+
+	result = LinkedList()
+	result.addTwoLists(llist1.head,llist2.head)
+	print("Resultant list is :")
+	result.printList()
+
+	#print("Length :")
 	#print(llist.getCount())
 	#llist.deleteNodePosition(0)
-	llist.swapNode(3,10)
+	#llist.swapNode(3,10)
+	#llist.reverseList()
 	
-	print("\nLinked List after Swap of 1: ")
-	llist.printList()
+	#print("\nLinked List after Swap of 1: ")
+	#llist.printList()
